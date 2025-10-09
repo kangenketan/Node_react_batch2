@@ -1,18 +1,8 @@
-var kata1 = "Saya"
-var kata2 = "Sangat"
-var kata3 = "Senang"
-var kata4 = "Sekali"
-var kata5 = "Belajar"
-var kata6 = "Programming"
-var kata7 = "dan"
-var kata8 = "Saya"
-var kata9 = "Juga"
-var kata10 = "Senang"
-var kata11 = "Belajar"
-var kata12 = "Javascript"
+// No. 1
+console.log("Nomor 1")
+var kata = "Saya Sangat Senang Sekali Belajar Programming dan Saya Juga Senang Belajar Javascript"
 
-const sentence = kata1 + " " + kata2 + " " + kata3 + " " + kata4 + " " + kata5 + " " + kata6 + " " + kata7 + " " + kata8 +" " + kata9 +" " + kata10 +" " + kata11 +" " + kata12 + "."
-var length = sentence.length;
+var length = kata.length;
 var kategori;
 
 if (length < 10){
@@ -23,5 +13,45 @@ else if (length >= 10 && length <= 30){
 } else {
     kategori = "Panjang";
 }
-console.log("Panjang String:", length);
+
 console.log("Kategori:", kategori);
+
+// No. 2
+console.log("Nomor 2")
+var nilai = 75;
+var indeks;
+
+if (nilai >= 80){
+    indeks = "A";
+}
+else if (nilai >= 70 && nilai < 80){
+    indeks = "B";
+}
+else if (nilai >= 60 && nilai < 70){
+    indeks = "C";
+}
+else if (nilai >= 50 && nilai < 60){
+    indeks = "D";
+} else {
+    indeks = "E";
+}
+console.log(nilai)
+
+// No. 3
+console.log("Nomor 3")
+var tanggal = 21;
+var bulan = 1;
+var tahun = 1987;
+
+switch (bulan) {
+    case 1:
+        console.log("Januari")
+        break;
+
+    default:
+        break;
+}
+
+
+
+
