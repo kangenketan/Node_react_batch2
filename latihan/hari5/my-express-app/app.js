@@ -8,14 +8,55 @@ let movies = [
   { id: 4, title: "Logan", year: 2017 },
 ];
 const getMovies = (req, res) => {
+  let {title} = req.query
   let result = " ";
+  
+  if(title === undefined){
+    title=""
+  }
+
+  console.log(title)
+
   movies.forEach((item, index) => {
+    if(item.title.toLowerCase().includes(title)){
     result += `${index + 1}. ${item.title}</br>`;
-  });
+  }
+  //console.log(title)
+  })
   res.send(result);
-};
+}
+
+const getMoviesByID = (req, res) => {
+  let (id) = req.params
+
+  console.log(id)
+
+  let result = movies.find(movies => movies.id === Number(id))
+    result.send(`${result.title}`)
+  }
+
 //root
 app.get("/Movie", getMovies);
+app.get('Movie/:id', getMoviesByID)
+
+//MIDDLEWARE
+const logMiddleware = (req, res, next) => {
+  console.log ("anda telah melewati Middleware")
+  next()
+}
+const getText =(req, res) => {
+  res.status(400).json('text': halaman ini dilewati dengan middleware',
+        res.status: 400 
+  })
+}
+
+//MIDDLEWARE TOKEN
+const checkToken = (req, res, next) => {
+  let {token} = req.query
+  if(token != 12345){
+
+  }
+}
 
 app.get("/", (req, res) => {
   res.send("Hello World");
