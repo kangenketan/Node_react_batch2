@@ -1,6 +1,9 @@
 const { connectionPool } = require("../config/db");
 const createMahasiswa = (req, res) => {
   var { nama, mata_kuliah, nilai } = req.body;
+  if (nilai < 0 || nilai > 100) {
+    return res.status(400).json("Data nilai salah");
+  }
   console.log(nama);
   console.log(mata_kuliah);
   console.log(nilai);
@@ -38,9 +41,6 @@ const readMahasiswa = (req, res) => {
   });
 };
 function getIndeksNilai(nilai) {
-  if (nilai < 0 || nilai > 100) {
-    return "Data nilai salah";
-  }
   if (nilai >= 80) {
     return "A";
   } else if (nilai >= 70) {
