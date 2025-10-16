@@ -64,4 +64,52 @@ function arrangeString(str) {
 console.log(arrangeString("bahasa"));
 console.log(arrangeString("similikiti"));
 console.log(arrangeString("sanbercode"));
-console.log(arrangeString(" "));
+console.log(arrangeString(`" "`));
+console.log("Nomor 5");
+function palindrome(kata) {
+  let cleanKata = kata.replace(/\s+/g, "");
+  let reversed = cleanKata.split("").reverse().join("");
+  return cleanKata === reversed;
+}
+
+console.log(palindrome("katak"));
+console.log(palindrome("blanket"));
+console.log(palindrome("nababan"));
+console.log(palindrome("haji ijah"));
+console.log(palindrome("mister"));
+console.log("Nomor 6");
+function angkaPalindrome(num) {
+  function isPalindrome(n) {
+    let str = n.toString();
+    let reversed = str.split("").reverse().join("");
+    return str === reversed;
+  }
+
+  num++;
+  while (!isPalindrome(num)) {
+    num++;
+  }
+  return num;
+}
+
+console.log(angkaPalindrome(8));
+console.log(angkaPalindrome(10));
+console.log(angkaPalindrome(117));
+console.log(angkaPalindrome(175));
+console.log(angkaPalindrome(1000));
+console.log("Nomor 7");
+function cekPermutasi(str1, str2) {
+  const s1 = str1.replace(/\s/g, "");
+  const s2 = str2.replace(/\s/g, "");
+
+  if (s1.length !== s2.length) return false;
+
+  const sortedStr1 = s1.split("").sort().join("");
+  const sortedStr2 = s2.split("").sort().join("");
+
+  return sortedStr1 === sortedStr2;
+}
+console.log(cekPermutasi("abah", "baha"));
+console.log(cekPermutasi("ondel", "delon"));
+console.log(cekPermutasi("paul sernine", "arsene lupin"));
+console.log(cekPermutasi("taco", "taca"));
