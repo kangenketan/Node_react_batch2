@@ -128,6 +128,7 @@
     "sqlstring": "^2.3.3",
     "statuses": "^2.0.2",
     "supports-color": "^5.5.0",
+    "swagger-ui-express": "^5.0.1",
     "tinyexec": "^1.0.1",
     "to-regex-range": "^5.0.1",
     "toidentifier": "^1.0.1",
@@ -140,8 +141,12 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "swagger": "node ./swagger.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "swagger-autogen": "^2.23.7"
+  }
 }
