@@ -1,0 +1,63 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+/* Buatlah styling section top dibawah ini */
+
+/* Buatlah styling section container dan card dibawah ini */
+
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 2px 16px;
+}
+.top {
+  text-align: center;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  font-size: larger;
+}
+.icon {
+  padding-top: 2em;
+}
+i {
+  padding-left: 30px;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 85%;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: fit-content;
+  margin-bottom: 30px;
+}
+
+.description {
+  padding: 15px;
+}
+
+.description h2 {
+  margin: 10px 0 5px;
+}
+
+.description small {
+  color: #777;
+  padding-bottom: 50px;
+}
+
+.description p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+}
+/* Aturlah breakpoint dibawah ini menggunakan media queries agar responsive */

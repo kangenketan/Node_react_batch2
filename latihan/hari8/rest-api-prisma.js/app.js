@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const router = require("./src/routes/main");
+const routerCategory = require("./src/routes/categoryRouter");
 const app = express();
 const port = 3000;
 
@@ -19,7 +20,7 @@ app.use(express.json());
 // app.get('/movie',getMovies)
 // app.get('/movie/:id',getMoviesByID)
 
-app.use("/api", router);
+app.use("/api", router, routerCategory);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
