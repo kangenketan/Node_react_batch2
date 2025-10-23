@@ -67,3 +67,5 @@ var maleAbove29 = people.filter(function (person) {
 });
 
 console.log(maleAbove29);
+
+console.log("Nomor 4");

@@ -1,5 +1,5 @@
-// const { PrismaClient } = require("../../generated/prisma");
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require("../../generated/prisma");
+// import { PrismaClient} from "@prisma/client";
 const prisma = new PrismaClient();
 
 const createMovie = async (req, res) => {
@@ -24,12 +24,21 @@ const createMovie = async (req, res) => {
 };
 
 const readMovie = async (req, res) => {
-  const movies = await prisma.movies.findMany();
-  res.json({
-    info: movies,
-    message: "Movie was succesfully fetch",
-    status: "success",
-  });
+  try {
+    const movies = await prisma.movies.findMany();
+    res.json({
+      info: movies,
+      message: "Movie was succesfully fetch",
+      status: "success",
+    });
+    return;
+  } catch (err) {
+    res.json({
+      data: null,
+      message: "Movie was unsuccesfully fetch",
+      status: "Error",
+    });
+  }
 };
 
 const readMovieById = async (req, res) => {

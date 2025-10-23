@@ -1,5 +1,5 @@
-// const { PrismaClient } = require("../../generated/prisma");
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require("../../generated/prisma");
+// import { PrismaClient} from "@prisma/client";
 const prisma = new PrismaClient();
 
 const createCategory = async (req, res) => {
@@ -9,7 +9,7 @@ const createCategory = async (req, res) => {
       data: { name },
     });
     res.json({
-      data: category,
+      data: name,
       message: "Category Name's was succesfully created",
       status: "succes",
     });
@@ -101,7 +101,7 @@ const deleteCategory = async (req, res) => {
       where: { id: Number(id) },
     });
     res.json({
-      info: deleteCategory,
+      info: category,
       message: "Category Name's was succesfully Deleted",
       status: "success",
     });
