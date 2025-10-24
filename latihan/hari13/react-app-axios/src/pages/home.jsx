@@ -8,13 +8,13 @@ function Home() {
     <div>
       <div>
         <a href="https://vite.dev" target="_blank">
-          <img src={kangenKetanLogo} className="logo" alt="Vite logo" />
+          <img src={kangenKetanLogo} className="logo" alt="Kangen Ketan Logo" />
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Kangen Ketan Cabang Wijaya Kusuma - Juanda 2</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

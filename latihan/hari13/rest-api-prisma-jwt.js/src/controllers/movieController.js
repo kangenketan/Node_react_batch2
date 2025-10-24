@@ -3,10 +3,10 @@ const { PrismaClient } = require("../../generated/prisma");
 const prisma = new PrismaClient();
 
 const createMovie = async (req, res) => {
-  let { title, year } = req.body;
+  let { title, year, categoryId } = req.body;
   try {
     const movies = await prisma.movies.create({
-      data: { title, year },
+      data: { title, year, categoryId },
     });
     res.json({
       data: movies,
