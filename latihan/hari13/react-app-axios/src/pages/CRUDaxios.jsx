@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "../CRUDaxios.css";
 function CRUDaxios() {
   const [data, setData] = useState([]);
   const [dataCatagory, setDataCategory] = useState([]);
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [categoryId, setCategoryId] = useState("");
+  const [id, setId]=useState("");
 
   useEffect(() => {
     fetchData();
@@ -61,7 +63,7 @@ function CRUDaxios() {
           categoryId: Number(categoryId),
         });
         fetchData();
-        fetchDataCategory;
+        fetchDataCategory();
       } else {
         alert("Data Batal Disimpan");
       }
@@ -83,9 +85,25 @@ function CRUDaxios() {
       alert(err);
     }
   };
+  const handleEdit = async(event) => {
+    try{
+      axios.get(`http://localhost:3000/api/movie/${id}`), then((response)=>{ 
+        let result=response.data.info
+      console.log(result)
+      setTitle(result.title)
+      setYear(result.year)
+      setCategoryId(result.categoryId)
+      console.log(title,year,categoryId)
+    })}catch(err)
+      {console.log(err)
+      }
+    }
+  }
+
   return (
     <>
-      <div>
+      <h1>CRUD AXIOS</h1>
+      <div className="flex justify-center gap-20">
         <form onSubmit={handleSubmit}>
           <label for="title">Title</label>
           <input
@@ -96,7 +114,6 @@ function CRUDaxios() {
             value={title}
             placeholder="Title's Movies"
           />
-
           <label for="year">Year</label>
           <input
             type="text"
@@ -106,7 +123,6 @@ function CRUDaxios() {
             value={year}
             placeholder="Release Year"
           />
-
           <label for="category">Category</label>
           <select
             id="category"
@@ -119,41 +135,46 @@ function CRUDaxios() {
               </option>
             ))}
           </select>
-
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" class="btn btn-secondary" />
         </form>
-        <h1>CRUD AXIOS</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Nomor</th>
-              <th>Judul</th>
-              <th>Tahun</th>
-              <th>Kategori</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item, index) => {
-              return (
-                <tr>
-                  <td>{index + 1}</td>
-                  <td>{item.title}</td>
-                  <td>{item.year}</td>
-                  <td>{item.categoryId}</td>
-                  <td>
-                    <button>Edit</button>
-                    <button onClick={() => handleDelete(item.id)}>
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+
+        <div className="overflow-x-auto">
+          <table className="table table-zebra">
+            <thead>
+              <tr>
+                <th>Nomor</th>
+                <th>Judul</th>
+                <th>Tahun</th>
+                <th>Kategori</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, index) => {
+                return (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{item.title}</td>
+                    <td>{item.year}</td>
+                    <td>{item.categoryId}</td>
+                    <td>
+                      <button className="btn btn-info">Edit</button>
+                      <button
+                        className="btn btn-error"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
 }
+
 export default CRUDaxios;
