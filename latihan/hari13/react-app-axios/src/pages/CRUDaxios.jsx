@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "../CRUDaxios.css";
 function CRUDaxios() {
   const [data, setData] = useState([]);
-  const [dataCatagory, setDataCategory] = useState([]);
+  const [dataCategory, setDataCategory] = useState([]);
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [categoryId, setCategoryId] = useState("");
@@ -153,7 +153,7 @@ function CRUDaxios() {
             name="category"
             onChange={handleCategoryIdChange}
           >
-            {dataCatagory.map((item, index) => (
+            {dataCategory.map((item, index) => (
               <option key={index} value={item.id}>
                 {item.name}
               </option>
@@ -161,7 +161,7 @@ function CRUDaxios() {
           </select>
           <input type="submit" value="Submit" class="btn btn-secondary" />
         </form>
-
+        
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             <thead>
