@@ -5,14 +5,15 @@ import "./App.css";
 import Home from "./pages/home";
 import CRUDaxios from "./pages/CRUDaxios";
 import "./CRUDaxios.css";
+import MainRoutes from "./routes/mainRoutes";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <Home></Home>
-      <CRUDaxios></CRUDaxios>
+      <MainRoutes></MainRoutes>
+      {/* <CRUDaxios></CRUDaxios> */}
     </>
   );
 }

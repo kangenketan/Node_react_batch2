@@ -1,5 +1,5 @@
 @import "tailwindcss";
-/* @plugin "daisyui"; */
+@plugin "daisyui";
 
 table {
   border-collapse: collapse;

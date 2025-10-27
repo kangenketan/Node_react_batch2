@@ -7,7 +7,7 @@ function CRUDaxios() {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [categoryId, setCategoryId] = useState("");
-  const [id, setId]=useState("");
+  const [id, setId] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -55,17 +55,33 @@ function CRUDaxios() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      let text = "Apakah Anda Yakin menyimpan data??";
-      if (confirm(text)) {
-        await axios.post("http://localhost:3000/api/movie", {
-          title: title,
-          year: Number(year),
-          categoryId: Number(categoryId),
-        });
-        fetchData();
-        fetchDataCategory();
+      let txtSimpan = "Apakah Anda Yakin menyimpan data??";
+      let txtUpdate = "Apakah Anda Yakin Memperbahuri Data??";
+      if (id) {
+        if (confirm(txtUpdate)) {
+          await axios.put(`http://localhost:3000/api/movie/${id}`, {
+            title: title,
+            year: Number(year),
+            categoryId: Number(categoryId),
+          });
+          setTitle("");
+          setYear("");
+          setCategoryId("");
+          fetchData();
+          fetchDataCategory();
+          hapusData();
+        }
       } else {
-        alert("Data Batal Disimpan");
+        if (confirm(txtSimpan)) {
+          await axios.post("http://localhost:3000/api/movie", {
+            title: title,
+            year: Number(year),
+            categoryId: Number(categoryId),
+          });
+
+          fetchData();
+          fetchDataCategory();
+        }
       }
     } catch (err) {
       alert(err);
@@ -85,24 +101,30 @@ function CRUDaxios() {
       alert(err);
     }
   };
-  const handleEdit = async(event) => {
-    try{
-      axios.get(`http://localhost:3000/api/movie/${id}`), then((response)=>{ 
-        let result=response.data.info
-      console.log(result)
-      setTitle(result.title)
-      setYear(result.year)
-      setCategoryId(result.categoryId)
-      console.log(title,year,categoryId)
-    })}catch(err)
-      {console.log(err)
-      }
+  const hapusData = () => {
+    setTitle("");
+    setYear("");
+    setCategoryId("");
+    setId("");
+  };
+  const handleEdit = async (id) => {
+    try {
+      axios.get(`http://localhost:3000/api/movie/${id}`).then((response) => {
+        let result = response.data.info;
+        console.log(result);
+        setTitle(result.title);
+        setYear(result.year);
+        // setCategoryId(result.categoryId);
+        setId(result.id);
+      });
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   return (
     <>
-      <h1>CRUD AXIOS</h1>
+      <h1>MOVIES</h1>
       <div className="flex justify-center gap-20">
         <form onSubmit={handleSubmit}>
           <label for="title">Title</label>
@@ -116,6 +138,7 @@ function CRUDaxios() {
           />
           <label for="year">Year</label>
           <input
+            className="input input-primary"
             type="text"
             id="year"
             name="year"
@@ -125,6 +148,7 @@ function CRUDaxios() {
           />
           <label for="category">Category</label>
           <select
+            value={categoryId}
             id="category"
             name="category"
             onChange={handleCategoryIdChange}
@@ -156,9 +180,14 @@ function CRUDaxios() {
                     <td>{index + 1}</td>
                     <td>{item.title}</td>
                     <td>{item.year}</td>
-                    <td>{item.categoryId}</td>
+                    <td>{item.category.name}</td>
                     <td>
-                      <button className="btn btn-info">Edit</button>
+                      <button
+                        className="btn btn-warning"
+                        onClick={() => handleEdit(item.id)}
+                      >
+                        Edit
+                      </button>
                       <button
                         className="btn btn-error"
                         onClick={() => handleDelete(item.id)}

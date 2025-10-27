@@ -25,7 +25,11 @@ const createMovie = async (req, res) => {
 
 const readMovie = async (req, res) => {
   try {
-    const movies = await prisma.movies.findMany();
+    const movies = await prisma.movies.findMany({
+      include: {
+        category: true,
+      },
+    });
     res.json({
       info: movies,
       message: "Movie was succesfully fetch",
@@ -72,15 +76,15 @@ const readMovieById = async (req, res) => {
 };
 
 const updateMovie = async (req, res) => {
-  let { title, year } = req.body;
+  let { title, year, categoryId } = req.body;
   let { id } = req.params;
   try {
     const movies = await prisma.movies.update({
       where: { id: Number(id) },
-      data: { title, year },
+      data: { title, year, categoryId },
     });
     res.json({
-      data: movie,
+      data: movies,
       message: "ll",
       status: "success",
     });
