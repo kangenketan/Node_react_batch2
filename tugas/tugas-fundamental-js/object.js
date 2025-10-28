@@ -69,3 +69,46 @@ var maleAbove29 = people.filter(function (person) {
 console.log(maleAbove29);
 
 console.log("Nomor 4");
+var people = [
+  { name: "John", job: "Programmer", gender: "male", age: 30 },
+  { name: "Sarah", job: "Model", gender: "female", age: 27 },
+  { name: "Jack", job: "Engineer", gender: "male", age: 25 },
+  { name: "Ellie", job: "Designer", gender: "female", age: 35 },
+  { name: "Danny", job: "Footballer", gender: "male", age: 30 },
+];
+
+const averageAge =
+  people.reduce((sum, person) => sum + person.age, 0) / people.length;
+
+console.log(averageAge);
+
+console.log("Nomor 5");
+var people = [
+  { name: "John", job: "Programmer", gender: "male", age: 30 },
+  { name: "Sarah", job: "Model", gender: "female", age: 27 },
+  { name: "Jack", job: "Engineer", gender: "male", age: 25 },
+  { name: "Ellie", job: "Designer", gender: "female", age: 35 },
+  { name: "Danny", job: "Footballer", gender: "male", age: 30 },
+];
+const sortedNames = people
+  .sort((a, b) => a.age - b.age)
+  .map((person, index) => `${index + 1}. ${person.name}`);
+
+console.log(sortedNames);
+console.log("Nomor 6");
+var phone = {
+  name: "Samsung Galaxy Note 20",
+  brand: "Samsung",
+  colors: ["Black"],
+  release: 2020,
+};
+
+function addColors(color) {
+  phone.colors.push(color);
+}
+
+addColors("Gold");
+addColors("Silver");
+addColors("Brown");
+
+console.log(phone);
