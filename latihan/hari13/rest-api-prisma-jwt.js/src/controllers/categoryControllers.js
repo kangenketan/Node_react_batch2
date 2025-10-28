@@ -58,15 +58,15 @@ const readCategoryById = async (req, res) => {
     }
 
     res.json({
-      info: movies,
-      message: "Category Name's was succesfully Fetch",
-      status: "Success",
+      info: category,
+      message: "Category was successfully fetched",
+      status: "success",
     });
   } catch (err) {
     res.json({
-      info: category,
-      message: err.massage,
-      status: "Error",
+      info: null,
+      message: err.message || String(err),
+      status: "error",
     });
   }
 };
@@ -101,8 +101,8 @@ const deleteCategory = async (req, res) => {
       where: { id: Number(id) },
     });
     res.json({
-      info: category,
-      message: "Category Name's was succesfully Deleted",
+      info: deleteCategory,
+      message: "Category was successfully deleted",
       status: "success",
     });
   } catch (err) {

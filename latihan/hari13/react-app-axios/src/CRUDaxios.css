@@ -50,3 +50,11 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #45a049;
 }
+
+.join {
+  display: block;
+  gap: 10px;
+  bottom: 0px;
+  position: absolute;
+  right: 0px;
+}

@@ -9,7 +9,7 @@ function MainLayout() {
         <ul className="menu menu-horizontal px-1 ">
           <div className="bg-base-100 rounded-t-none p-2">Kangen Ketan</div>
           <li className="btn btn-ghost text-xl">
-            <Link to="/movie">Movies</Link>
+            <Link to="/">Movies</Link>
           </li>
           <li className="btn btn-ghost text-xl">
             <Link to="/category">Categories</Link>

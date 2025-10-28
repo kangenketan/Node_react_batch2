@@ -8,22 +8,26 @@ function CRUDaxios() {
   const [year, setYear] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [id, setId] = useState("");
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     fetchData();
     fetchDataCategory();
-  }, []);
+  }, [page]);
 
   const fetchData = () => {
     axios
-      .get("http://localhost:3000/api/movie")
-      .then((response) => {
-        setData(response.data.info);
+      .get(`http://localhost:3000/api/movie?page=` + page)
+      .then((result) => {
+        setData(result.data.info.movies);
+        setCount(result.data.info.total);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((e) => {
+        console.log(e);
       });
   };
+
   const fetchDataCategory = async () => {
     const response = await axios
       .get("http://localhost:3000/api/category")
@@ -35,6 +39,7 @@ function CRUDaxios() {
         console.error("There was an error fetching the data!", err);
       });
   };
+
   const handleTitleChange = async (event) => {
     try {
       await setTitle(event.target.value);
@@ -76,7 +81,7 @@ function CRUDaxios() {
           await axios.post("http://localhost:3000/api/movie", {
             title: title,
             year: Number(year),
-            categoryId: Number(categoryId),
+            categoryId: Number(dataCategory[0]?.id || categoryId),
           });
 
           fetchData();
@@ -89,7 +94,7 @@ function CRUDaxios() {
   };
   const handleDelete = async (id) => {
     try {
-      let text = "Apakah Anda Yakin menghapus data ini??";
+      let text = "Apakah Anda yakin menghapus data ini??";
       if (confirm(text)) {
         await axios.delete(`http://localhost:3000/api/movie/${id}`);
         fetchData();
@@ -161,7 +166,7 @@ function CRUDaxios() {
           </select>
           <input type="submit" value="Submit" class="btn btn-secondary" />
         </form>
-        
+
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             <thead>
@@ -177,10 +182,10 @@ function CRUDaxios() {
               {data.map((item, index) => {
                 return (
                   <tr>
-                    <td>{index + 1}</td>
+                    <td>{(page - 1) * 5 + index + 1}</td>
                     <td>{item.title}</td>
                     <td>{item.year}</td>
-                    <td>{item.category.name}</td>
+                    <td>{item.category?.name}</td>
                     <td>
                       <button
                         className="btn btn-warning"
@@ -201,9 +206,18 @@ function CRUDaxios() {
             </tbody>
           </table>
         </div>
+        <div className="join">
+          {Array.from({ length: Math.ceil(count / 3) }, (_, i) => (
+            <button
+              className="join-item btn btn-xl"
+              onClick={() => setPage(i + 1)}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
       </div>
     </>
   );
 }
-
 export default CRUDaxios;

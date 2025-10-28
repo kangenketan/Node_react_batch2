@@ -14,9 +14,8 @@ export default function MainRoutes() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainLayout />}>
-            <Route index element={<Home />} />
-            <Route path="movie" element={<CRUDaxios />} />
-            <Route path="category" element={<Category />} />
+            <Route index element={<CRUDaxios />} />
+            <Route path="/Category" element={<Category />} />
 
             {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
@@ -28,13 +27,13 @@ export default function MainRoutes() {
     </div>
   );
 
-  function Home() {
-    return (
-      <div>
-        <h2>Home</h2>
-      </div>
-    );
-  }
+  // function Home() {
+  //   return (
+  //     <div>
+  //       <h2>Home</h2>
+  //     </div>
+  //   );
+  // }
 
   // function About() {
   //   return (
