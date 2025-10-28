@@ -17,6 +17,8 @@ function CRUDaxios() {
   }, [page]);
 
   const fetchData = () => {
+    console.log(page);
+
     axios
       .get(`http://localhost:3000/api/movie?page=` + page)
       .then((result) => {
@@ -33,7 +35,7 @@ function CRUDaxios() {
       .get("http://localhost:3000/api/category")
       .then((response) => {
         setDataCategory(response.data.info);
-        console.log(response.data.info);
+        // console.log(response.data.info);
       })
       .catch((err) => {
         console.error("There was an error fetching the data!", err);

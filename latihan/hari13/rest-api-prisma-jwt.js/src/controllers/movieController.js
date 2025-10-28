@@ -33,10 +33,16 @@ const readMovie = async (req, res) => {
         },
       },
     });
+
     if (page) {
       movies = await prisma.movies.findMany({
         skip: (page - 1) * 5,
         take: 5,
+        include: {
+          category: {
+            select: { name: true },
+          },
+        },
       });
     }
 
