@@ -97,5 +97,14 @@ let newProducts = [
 ];
 
 samsung = addProducts(samsung, newProducts);
-
 console.log(samsung);
+console.log("Nomor 7 Konversi Object");
+const createObject = ([nama, domisili, umur]) => ({
+  nama,
+  domisili,
+  umur,
+});
+
+let data = ["Bondra", "Medan", 25];
+console.log(createObject(data));
+console.log("Nomor 8 Graduate");
