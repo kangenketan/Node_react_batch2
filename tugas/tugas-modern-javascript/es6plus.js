@@ -108,3 +108,30 @@ const createObject = ([nama, domisili, umur]) => ({
 let data = ["Bondra", "Medan", 25];
 console.log(createObject(data));
 console.log("Nomor 8 Graduate");
+const graduate = (...studentsData) => {
+  const allStudents = [].concat(...studentsData);
+  const result = {};
+  allStudents.forEach(({ name, class: className }) => {
+    if (!result[className]) result[className] = [];
+    result[className].push(name);
+  });
+
+  return result;
+};
+
+const data1 = [
+  { name: "Ahmad", class: "adonis" },
+  { name: "Regi", class: "laravel" },
+  { name: "Bondra", class: "adonis" },
+  { name: "Iqbal", class: "vuejs" },
+  { name: "Putri", class: "laravel" },
+];
+
+const data2 = [
+  { name: "Yogi", class: "react" },
+  { name: "Fikri", class: "agile" },
+  { name: "Arief", class: "agile" },
+];
+
+console.log(graduate(data1));
+console.log(graduate(data2));
