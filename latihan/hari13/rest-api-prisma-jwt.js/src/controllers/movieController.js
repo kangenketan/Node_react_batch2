@@ -105,7 +105,7 @@ const updateMovie = async (req, res) => {
     });
     res.json({
       data: movies,
-      message: "ll",
+      message: "null",
       status: "success",
     });
   } catch (err) {

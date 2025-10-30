@@ -9,7 +9,7 @@ const createCategory = async (req, res) => {
       data: { name },
     });
     res.json({
-      data: name,
+      data: category,
       message: "Category Name's was succesfully created",
       status: "succes",
     });
@@ -81,7 +81,7 @@ const updateCategory = async (req, res) => {
     });
     res.json({
       data: category,
-      message: "ll",
+      message: "null",
       status: "success",
     });
   } catch (err) {
