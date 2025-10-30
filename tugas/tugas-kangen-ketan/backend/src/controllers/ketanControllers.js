@@ -1,6 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { deleteCategory } from "../../../../../latihan/hari13/rest-api-prisma-jwt.js/src/controllers/categoryControllers";
-
 const prisma = new PrismaClient();
 
 export const getAllKetanProducts = async (req, res) => {
@@ -223,15 +221,21 @@ export const updateCategory = async (req, res) => {
   }
 };
 export const deleteCategory = async (req, res) => {
-let{ id } = req.params;
-try {
-  const category = await prisma.category.delete({ 
-    where: { id: Number(id) },
-   });
-   res.json({
-    info: category,
-    message: "Category was succesfully Deleted",
-    status: "success",
-   });
-}
+  let { id } = req.params;
+  try {
+    const category = await prisma.category.delete({
+      where: { id: Number(id) },
+    });
+    res.json({
+      info: category,
+      message: "Category was succesfully Deleted",
+      status: "success",
+    });
+  } catch (err) {
+    res.json({
+      info: null,
+      message: err.message,
+      status: "error",
+    });
+  }
 };
