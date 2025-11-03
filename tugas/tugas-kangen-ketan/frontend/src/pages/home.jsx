@@ -57,7 +57,7 @@ function Home() {
             Nikmati lezatnya ketan tradisional dengan cita rasa kekinian yang
             menggoda selera.
           </p>
-          <button className="bg-green-500 px-5 sm:px-6 py-3 rounded-md text-white text-base sm:text-lg md:text-xl font-semibold hover:bg-green-600 transition duration-300">
+          <button className="bg-green-500 px-5 sm:px-6 py-4 rounded-full text-white text-base sm:text-lg md:text-xl font-semibold hover:bg-green-600 transition duration-300">
             Kangen, Order sekarang ya Kak
           </button>
         </div>
@@ -73,13 +73,13 @@ function Home() {
             MENU KANGEN KETAN
           </h1>
 
-          <div className="text-center pt-5">
-            <ul className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 md:gap-10 text-lg sm:text-xl font-semibold">
+          <div className="text-center pt-10">
+            <ul className="flex flex-col sm:flex-row justify-center items-center gap-3  text-lg sm:text-xl font-semibold">
               {categories.map((category) => (
                 <li>
                   <a
                     href="#"
-                    className="bg-orange-400 hover:bg-orange-500 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-xl transition duration-300"
+                    className="bg-orange-400 hover:bg-orange-500 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full transition duration-300"
                   >
                     {category.name}
                   </a>
@@ -126,7 +126,10 @@ function Home() {
                   Rp. {product.price},-
                 </p>
                 <div className="my-5">
-                  <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
+                  <a
+                    className="bg-orange-400 py-3 px-6 rounded-full font-bold text-white"
+                    href=""
+                  >
                     Pesan
                   </a>
                 </div>
@@ -171,7 +174,7 @@ function Home() {
                     />
                   </svg>
                   <h1 className="text-2xl font-bold text-amber-400">
-                    Cabang Wijaya Kusuma
+                    Cabang Wijaya Kusuma-Juanda 2
                   </h1>
                 </div>
                 <p className="bg-green-500 px-5 py-3 rounded-full text-white font-bold">
@@ -180,34 +183,41 @@ function Home() {
               </div>
               <div className="text-center pb-5">
                 <p className="text-lg">
-                  Jl. Juanda No. 8, Samarinda Ulu, Kota Samarinda
+                  Jl. Wijaya Kusuma-Juanda 2, Ruko 3 Pintu
+                  <br />
+                  samping Babershop Zye/ Soulthan Laundry/ Bubur Eka Banten
                 </p>
                 <p className="text-lg">
-                  <span className="font-bold">Jam Buka:</span> 10:00 - 22:00
+                  <span className="font-bold">Jam Buka:</span> 09:00 - 21:00
                   WITA
                 </p>
                 <div className="my-8">
-                  <a href="" className="bg-gray-200 px-55 py-5 rounded-full w">
+                  <a
+                    href="https://www.google.com/maps/search/kangen+ketan+samarinda/@-0.4856715,117.1325973,14z?entry=ttu&g_ep=EgoyMDI1MTAyOS4yIKXMDSoASAFQAw%3D%3D"
+                    className="bg-gray-200 px-55 py-5 rounded-full w hover:bg-gray-300 transition"
+                    target="_blank"
+                  >
                     Buka di Google Maps
                   </a>
                 </div>
               </div>
               <div className="flex justify-between gap-3">
                 <a
-                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
+                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center hover:bg-green-600 transition"
                   href="https://gofood.co.id/samarinda/restaurant/kangen-ketan-juanda-2-6baef9f7-9846-4181-8c3a-89d94553b32b"
                   target="_blank"
                 >
                   GoFood
                 </a>
                 <a
-                  className="bg-orange-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
-                  href=""
+                  className="bg-orange-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center hover:bg-orange-600 transition"
+                  href="https://shopee.co.id/universal-link/now-food/shop/21732899?deep_and_deferred=1&shareChannel=copy_info"
+                  target="_blank"
                 >
                   Shopee
                 </a>
                 <a
-                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
+                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center  hover:bg-green-600 transition"
                   href="https://food.grab.com/id/id/restaurant/kangen-ketan-air-hitam-delivery/6-C6WXG62BGX2EEJ"
                   target="_blank"
                 >
@@ -239,34 +249,41 @@ function Home() {
               </div>
               <div className="text-center pb-5">
                 <p className="text-lg">
-                  Jl. Pirus, Komplek pertokoan, Samarinda Kota
+                  Jl. Nilam-Pirus, Awang Long
+                  <br />
+                  sederetan Gorengan Odah Etam
                 </p>
                 <p className="text-lg">
-                  <span className="font-bold">Jam Buka:</span> 10:00 - 22:00
+                  <span className="font-bold">Jam Buka:</span> 10:00 - 19:00
                   WITA
                 </p>
                 <div className="my-8">
-                  <a href="" className="bg-gray-200 px-55 py-5 rounded-full w">
+                  <a
+                    href="https://www.google.com/maps/place/KANGEN+KETAN+SAMARINDA/@-0.4856715,117.1325973,14z/data=!4m10!1m2!2m1!1skangen+ketan+samarinda!3m6!1s0x2df67fbb3886b155:0x5621fa15c196bfec!8m2!3d-0.4991174!4d117.1443627!15sChZrYW5nZW4ga2V0YW4gc2FtYXJpbmRhkgENZm9vZF9wcm9kdWNlcqoBbwoNL2cvMTFnMGh5NXBwdAoNL2cvMTF2bHo2eGJschABKhAiDGthbmdlbiBrZXRhbigmMh8QASIbalUGRfH0uCWqwEQ9552Uq5Nqx42bDBvH4IzdMhoQAiIWa2FuZ2VuIGtldGFuIHNhbWFyaW5kYeABAA!16s%2Fg%2F11g0hy5ppt?entry=ttu&g_ep=EgoyMDI1MTAyOS4yIKXMDSoASAFQAw%3D%3D"
+                    className="bg-gray-200 px-55 py-5 rounded-full w hover:bg-gray-300 transition"
+                    target="_blank"
+                  >
                     Buka di Google Maps
                   </a>
                 </div>
               </div>
               <div className="flex justify-between gap-3">
                 <a
-                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
+                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center  hover:bg-green-600 transition"
                   href="https://gofood.co.id/samarinda/restaurant/kangen-ketan-pirus-f85e2994-d8c2-4a84-8a1c-91ec59e3b762"
                   target="_blank"
                 >
                   GoFood
                 </a>
                 <a
-                  className="bg-orange-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
-                  href=""
+                  className="bg-orange-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center  hover:bg-orange-600 transition"
+                  href="https://shopee.co.id/universal-link/now-food/shop/20181553?deep_and_deferred=1&shareChannel=copy_link"
+                  target="_blank"
                 >
                   Shopee
                 </a>
                 <a
-                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
+                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center  hover:bg-green-600 transition"
                   href="https://food.grab.com/id/id/restaurant/kangen-ketan-air-hitam-delivery/6-C6WXG62BGX2EEJ"
                   target="_blank"
                 >

@@ -32,7 +32,7 @@ function MainLayout() {
           </div>
 
           {/* WhatsApp Button */}
-          <div className="hidden md:block bg-green-500 hover:bg-green-600 px-3 sm:px-4 py-2 rounded-md text-white text-sm sm:text-base transition">
+          <div className="hidden md:block bg-green-500 hover:bg-green-600 px-3 sm:px-4 py-3 rounded-full text-white text-sm sm:text-base transition">
             <a href="#Order" rel="noreferrer">
               Order Online
             </a>
