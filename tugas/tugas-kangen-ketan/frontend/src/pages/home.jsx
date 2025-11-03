@@ -5,13 +5,40 @@ import Ketan3 from "../assets/ketan keju cokelat susu.jpeg";
 import Ketan4 from "../assets/ketan oreo susu.jpeg";
 import Ketan5 from "../assets/ketan serundeng.jpeg";
 import Ketan6 from "../assets/ketan juruh.jpeg";
-import Ketan7 from "../assets/ketan ikan teri.jpeg";
+import Ketan7 from "../assets/ketan ikan teri.png";
 import Ketan8 from "../assets/ketan abon tuna.jpeg";
 import Ketan9 from "../assets/ketan durian.jpeg";
 import Ketan10 from "../assets/ketan inti.jpeg";
 import Angsle from "../assets/angsle.jpeg";
 import KentangMustofa from "../assets/kentang mustofa.jpeg";
+import { useEffect, useState } from "react";
+import axios from "axios";
 function Home() {
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const getCategories = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/category");
+      console.log(response.data.info);
+      setCategories(response.data.info);
+    } catch (error) {}
+  };
+
+  const getProducts = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/api/ketan-products"
+      );
+      console.log(response.data);
+      setProducts(response.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getCategories();
+    getProducts();
+  }, []);
   return (
     <div>
       {/* ===== HERO SECTION ===== */}
@@ -39,7 +66,7 @@ function Home() {
       {/* ===== MENU SECTION ===== */}
       <section
         id="Menu"
-        className="px-4 sm:px-8 md:px-12 lg:px-20 py-10 sm:py-16 lg:py-20 scroll-mt-20"
+        className="px-4 sm:px-8 md:px-12 lg:px-20 py-10 sm:py-16 lg:py-20 scroll-mt-20 bg-gray-100"
       >
         <div className="flex flex-col justify-center mx-auto mb-10 sm:mb-15">
           <h1 className="lg:text-5xl md:text-3xl text-xl font-bold text-center">
@@ -48,15 +75,17 @@ function Home() {
 
           <div className="text-center pt-5">
             <ul className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 md:gap-10 text-lg sm:text-xl font-semibold">
-              <li>
-                <a
-                  href="#"
-                  className="bg-orange-400 hover:bg-orange-500 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-xl transition duration-300"
-                >
-                  Klasik
-                </a>
-              </li>
-              <li>
+              {categories.map((category) => (
+                <li>
+                  <a
+                    href="#"
+                    className="bg-orange-400 hover:bg-orange-500 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-xl transition duration-300"
+                  >
+                    {category.name}
+                  </a>
+                </li>
+              ))}
+              {/* <li>
                 <a
                   href="#"
                   className="bg-orange-400 hover:bg-orange-500 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-xl transition duration-300"
@@ -71,7 +100,7 @@ function Home() {
                 >
                   Buah
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -79,295 +108,169 @@ function Home() {
         {/* ===== GRID MENU ===== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {/* === 1 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Ketan1}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">
-                Ketan Bubuk Kelapa
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan pulen ditaburin dengan bubuk kedelai yang renyah dan
-                didampingin parutan kelapa muda seger
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 15.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
-                </a>
+          {products.map((product) => (
+            <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
+              <img
+                className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
+                src={Ketan1}
+                alt=""
+              />
+              <div className="p-5 space-y-3">
+                <h1 className="text-2xl md:text-3xl font-bold">
+                  {product.name}
+                </h1>
+                <p className="text-base sm:text-lg text-gray-600">
+                  {product.description}
+                </p>
+                <p className="text-lg sm:text-xl font-semibold text-red-500">
+                  Rp. {product.price},-
+                </p>
+                <div className="my-5">
+                  <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
+                    Pesan
+                  </a>
+                </div>
               </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* =====  ===== */}
+      <section id="Order" className="bg-white px-64 py-20 scroll-mt-15">
+        <div>
+          <div className="text-center space-y-10 mb-10">
+            <h1 className="text-5xl font-bold">Temukan & Pesan Kangen Ketan</h1>
+            <p className="text-xl font-semibold">
+              Pesan langsung via WhatsApp atau pilih cabang terdekatmu di <br />
+              aplikasi favoritmu!
+            </p>
+            <div className="bg-green-500 hover:bg-green-600 px-5 py-3 rounded-full text-white text-lg font-semibold w-max mx-auto transition">
+              <a
+                href="https://wa.me/+6285787570131"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Pesan Cepat via WhatsApp
+              </a>
             </div>
           </div>
 
-          {/* === 2 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Ketan2}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">
-                Manggo Sticky Rice
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan Mangga dilumerin dengan fla pilihan dengan cita rasa susu
-                yang kental manis
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 35.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
+          <div className="grid grid-cols-2 gap-5">
+            <div className="shadow-2xl p-10 rounded-xl">
+              <div className="flex justify-between mb-5">
+                <div className="flex items-center">
+                  <svg
+                    className="size-12"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="#e00b0b"
+                      d="M128 252.6C128 148.4 214 64 320 64C426 64 512 148.4 512 252.6C512 371.9 391.8 514.9 341.6 569.4C329.8 582.2 310.1 582.2 298.3 569.4C248.1 514.9 127.9 371.9 127.9 252.6zM320 320C355.3 320 384 291.3 384 256C384 220.7 355.3 192 320 192C284.7 192 256 220.7 256 256C256 291.3 284.7 320 320 320z"
+                    />
+                  </svg>
+                  <h1 className="text-2xl font-bold text-amber-400">
+                    Cabang Wijaya Kusuma
+                  </h1>
+                </div>
+                <p className="bg-green-500 px-5 py-3 rounded-full text-white font-bold">
+                  Buka
+                </p>
+              </div>
+              <div className="text-center pb-5">
+                <p className="text-lg">
+                  Jl. Juanda No. 8, Samarinda Ulu, Kota Samarinda
+                </p>
+                <p className="text-lg">
+                  <span className="font-bold">Jam Buka:</span> 10:00 - 22:00
+                  WITA
+                </p>
+                <div className="my-8">
+                  <a href="" className="bg-gray-200 px-55 py-5 rounded-full w">
+                    Buka di Google Maps
+                  </a>
+                </div>
+              </div>
+              <div className="flex justify-between gap-3">
+                <a
+                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
+                  href="https://gofood.co.id/samarinda/restaurant/kangen-ketan-juanda-2-6baef9f7-9846-4181-8c3a-89d94553b32b"
+                  target="_blank"
+                >
+                  GoFood
+                </a>
+                <a
+                  className="bg-orange-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
+                  href=""
+                >
+                  Shopee
+                </a>
+                <a
+                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
+                  href="https://food.grab.com/id/id/restaurant/kangen-ketan-air-hitam-delivery/6-C6WXG62BGX2EEJ"
+                  target="_blank"
+                >
+                  GrabFood
                 </a>
               </div>
             </div>
-          </div>
 
-          {/* === 3 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Ketan3}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">
-                Ketan Keju Meses Susu
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan maniak dengan taburan keju meses susu yang lumer di mulut
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 20.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
-                </a>
+            <div className="shadow-2xl p-10 rounded-xl">
+              <div className="flex justify-between mb-5">
+                <div className="flex items-center">
+                  <svg
+                    className="size-12"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="#e00b0b"
+                      d="M128 252.6C128 148.4 214 64 320 64C426 64 512 148.4 512 252.6C512 371.9 391.8 514.9 341.6 569.4C329.8 582.2 310.1 582.2 298.3 569.4C248.1 514.9 127.9 371.9 127.9 252.6zM320 320C355.3 320 384 291.3 384 256C384 220.7 355.3 192 320 192C284.7 192 256 220.7 256 256C256 291.3 284.7 320 320 320z"
+                    />
+                  </svg>
+                  <h1 className="text-2xl font-bold text-amber-400">
+                    Cabang Pirus
+                  </h1>
+                </div>
+                <p className="bg-red-500 px-5 py-3 rounded-full text-white font-bold">
+                  Tutup
+                </p>
               </div>
-            </div>
-          </div>
-
-          {/* === 4 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Ketan4}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">
-                Ketan Oreo Susu
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan taburan oreo dengan dibalurin susu manis yang creamy
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 15.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
-                </a>
+              <div className="text-center pb-5">
+                <p className="text-lg">
+                  Jl. Pirus, Komplek pertokoan, Samarinda Kota
+                </p>
+                <p className="text-lg">
+                  <span className="font-bold">Jam Buka:</span> 10:00 - 22:00
+                  WITA
+                </p>
+                <div className="my-8">
+                  <a href="" className="bg-gray-200 px-55 py-5 rounded-full w">
+                    Buka di Google Maps
+                  </a>
+                </div>
               </div>
-            </div>
-          </div>
-
-          {/* === 5 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Ketan5}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">
-                Ketan Serundeng
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan yang lembut dan serundeng kelapa kaya rasa.
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 15.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
+              <div className="flex justify-between gap-3">
+                <a
+                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
+                  href="https://gofood.co.id/samarinda/restaurant/kangen-ketan-pirus-f85e2994-d8c2-4a84-8a1c-91ec59e3b762"
+                  target="_blank"
+                >
+                  GoFood
                 </a>
-              </div>
-            </div>
-          </div>
-
-          {/* === 6 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Ketan6}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">Ketan Juruh</h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan pulen, gurih kelapa parut, disiram Juruh Gula Aren asli.
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 15.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
+                <a
+                  className="bg-orange-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
+                  href=""
+                >
+                  Shopee
                 </a>
-              </div>
-            </div>
-          </div>
-
-          {/* === 7 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Ketan7}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">
-                Ketan Ikan Teri
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan pulen hangat, gurihnya teri renyah, dibalut sambal pedas.
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 15.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* === 8 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Ketan8}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">
-                Ketan Abon Tuna
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan pulen hangat dan abon tuna yang renyah.
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 15.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* === 9 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Ketan9}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">Ketan Durian</h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan pulen dengan durian pilihan dilumerin fla susu.
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 35.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* === 10 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Ketan10}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">Ketan Inti</h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan inti kelapa hangat.
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 15.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* === 11 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={Angsle}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">Angsle</h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Ketan dengan santan jahe dan bubur kacang hijau.
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 20.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* === 12 === */}
-          <div className="bg-white mx-auto rounded-2xl shadow-2xl w-full">
-            <img
-              className="rounded-t-xl h-60 sm:h-64 md:h-70 w-full object-cover"
-              src={KentangMustofa}
-              alt=""
-            />
-            <div className="p-5 space-y-3">
-              <h1 className="text-2xl md:text-3xl font-bold">
-                Terpikat Selera KentangMustofa
-              </h1>
-              <p className="text-base sm:text-lg text-gray-600">
-                Selera kentang mustofa yang gurih dan renyah, cocok untuk
-                camilan.
-              </p>
-              <p className="text-lg sm:text-xl font-semibold text-red-500">
-                Rp. 30.000,-
-              </p>
-              <div className="my-5">
-                <a className="bg-amber-300 py-3 px-6 rounded-lg" href="">
-                  Pesan
+                <a
+                  className="bg-green-500 px-5 py-4 rounded-full text-white font-bold w-1/3 text-center"
+                  href="https://food.grab.com/id/id/restaurant/kangen-ketan-air-hitam-delivery/6-C6WXG62BGX2EEJ"
+                  target="_blank"
+                >
+                  GrabFood
                 </a>
               </div>
             </div>
@@ -404,6 +307,12 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <footer className="bg-amber-200 p-5">
+        <div className="text-center">
+          <h1>&copy; 2025 Kangen Ketan Samarinda</h1>
+        </div>
+      </footer>
     </div>
   );
 }

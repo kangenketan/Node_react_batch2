@@ -11,7 +11,11 @@ function MainLayout() {
         >
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img className="w-16 sm:w-20" src={logo} alt="Kangen Ketan Logo" />
+            <img
+              className="w-15 rounded-full"
+              src={logo}
+              alt="Kangen Ketan Logo"
+            />
           </div>
 
           {/* Navigation Links */}
@@ -29,12 +33,8 @@ function MainLayout() {
 
           {/* WhatsApp Button */}
           <div className="hidden md:block bg-green-500 hover:bg-green-600 px-3 sm:px-4 py-2 rounded-md text-white text-sm sm:text-base transition">
-            <a
-              href="https://wa.me/+6285787570131"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Whatsapp Admin Kangen Ketan
+            <a href="#Order" rel="noreferrer">
+              Order Online
             </a>
           </div>
 
